@@ -107,6 +107,23 @@ Problems in the first point fail the **PR checklist** check; the rest are advice
 
 Both project owners, `@shekhar-narayan-mishra` and `@vedansha07`, are code owners and are requested automatically on every PR. Either can approve and merge. How owner-level decisions are made is described in [GOVERNANCE.md](GOVERNANCE.md).
 
+## Finishing a contributor's PR (for maintainers)
+
+When a contribution is good but needs small fixes, a missing sign-off or a better description, **finish it in place and merge the contributor's own PR**. Don't open a replacement PR. That way their PR shows as merged, and the squash commit names them as its author.
+
+1. **Ask first.** Comment with exactly what's needed. Give the author a reasonable chance to respond.
+2. **Fix on their branch.** Most contributors leave "Allow edits by maintainers" on. Push new, signed commits; never force-push over their history.
+   ```bash
+   gh pr checkout <number>
+   # …fix…
+   git commit -s -m "fix: …"
+   git push                     # goes to the contributor's branch
+   ```
+3. **Title and description:** edit them directly on GitHub.
+4. **Missing sign-off.** An owner may apply the **`dco-maintainer-signoff`** label. By doing so the owner certifies the unsigned commits under DCO clause (b), and the DCO check then passes and records who applied the label. Only use it after reading the code and finding nothing that looks copied from elsewhere. Contributors can't apply labels.
+5. **Merge** with "Squash and merge". Keep the contributor as the author, and add your own `Signed-off-by: Name <email>` to the commit message.
+6. **Close the linked issue** by hand. Merges into `staging` don't auto-close issues; only merges into `main` do.
+
 ## Getting help
 
 Ask in the issue you are working on. For anything security-related, see [SECURITY.md](SECURITY.md). Everyone taking part must follow the [Code of Conduct](CODE_OF_CONDUCT.md).
